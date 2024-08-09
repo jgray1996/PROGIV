@@ -1,0 +1,60 @@
+<h1 id="the-factory">The factory</h1>
+<h2 id="what-is-a-factory">What is a factory?</h2>
+<p>A factory is a design pattern that deals with the creation of
+objects. It was invented to decrease the amount of coupling between
+classes. Coupling is what can happen if a complex object is being
+interfaced with directly. This can cause many threads of interaction to
+form between the controlling and the controlled object. Which in turn
+leads to difficultly maintainable code.</p>
+<p><img
+src="https://m.media-amazon.com/images/I/51-8gPee03L.jpg" /><br />
+<em>A nice representation of coupling, in my opinion</em></p>
+<h2 id="how-does-a-factory-solve-this-issue">How does a factory solve
+this issue?</h2>
+<p>A factory aims to solve coupling by abstracting away the
+instantiation of objects in a new and separate factory class. In which
+the processing computations named <strong>products</strong> are
+handled.</p>
+<p>Imagine you could program cooking. One could create a class named
+<code>Chef</code> and <code>Chef</code> is able to do many things. He
+could, for example <code>cook</code>, <code>clean</code>,
+<code>use_oven</code>, <code>yell_at_cook</code> and
+<code>smoke_cigarette</code> as any chef typically does. The Chef is
+proficient at interacting with many objects in the kitchen. Think of
+<code>Knife</code>, <code>Oven</code>, <code>Whisk</code>,
+<code>Cigarettes</code> but also <code>Courgette</code>,
+<code>Truffle</code>, <code>Egg</code>, <code>Caviar</code>,
+<code>Milk</code>, <code>Flour</code>.</p>
+<h3 id="one-day">One day</h3>
+<p>On a good day, Monsieur Toddler walks into the restaurant and orders
+pancakes. Chef is dumbfounded, his restaurant is a place of
+sophistication and refine. Alas, the customer is king, and chef gets to
+work even though his kitchen isn’t exactly made to cook pancakes.
+However, his kitchen is made to cook, and the chef is flexible, he just
+needs to give orders to the cooks! Chef grabs the great book <em>Cuisine
+a la Usine</em>. A fine book that contains explicit instructions of how
+to use the kitchen in combination with the ingredients to produce
+pancakes. He puts his cooks to work, and in a whirl, the finest pancakes
+are served, which are devoured by Monsieur Toddler. Chef hangs his apron
+on a hook and leaves home, vowing never to cook pancakes in his kitchen
+ever again.</p>
+<h3 id="the-moral-of-the-story">The moral of the story</h3>
+<p>In this story, Chef isn’t bound by the things that were served on the
+menu. He just needed to update a new product in the cooking factory.
+This was done easily, and was reverted just as easily. This is what
+factories do.</p>
+<h2
+id="does-implementing-a-factory-follow-the-interface-segregation-principle-isp">Does
+implementing a factory follow the <em>Interface Segregation Principle?
+(ISP)</em></h2>
+<p>Implementing a factory method <strong>can</strong> follow the ISP
+depending on how the factory is written.</p>
+<ul>
+<li><p>Yes, if the factory method is implemented in such a way that the
+interface is specific.</p></li>
+<li><p>No, if the factory method interface is large and includes methods
+that a client does not need or use. This would violate the ISP because
+clients would be forced to implement unnecessary methods. This would
+defeat the use of a factory all again, just adding unnecessary
+complexity.</p></li>
+</ul>
