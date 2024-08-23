@@ -37,6 +37,6 @@ class Main:
     def main(self):
         self.event_loop()
 
-
-m = Main()
-m.main()
+if __name__ == "__main__":
+    m = Main()
+    m.main()
