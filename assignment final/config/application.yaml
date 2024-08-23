@@ -1,11 +1,7 @@
-input_directory:
-  - "input/"
-output_directory:
-  - "output/"
-img_directory:
-  - "img/"
-sensors:
+input_directory: "input/"
+output_directory: "output/"
+img_directory: "img/"
+sensors: 
   - "name_1"
   - "name_2"
-interval: # seconds
-  - 1
+interval: 2
