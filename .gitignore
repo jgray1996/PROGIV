@@ -2,3 +2,9 @@ assignment 2/Karel/*
 assignment final/data/sensor.csv
 assignment final/Study_Case_Anomaly_Detection.ipynb
 .venv/*
+assignment final/src/__pycache__/*
+*.drawio
+assignment final/data/test_set_one.csv
+assignment final/data/test_set_two.csv
+assignment final/data/training_set.csv
+assignment final/src/data_splitter.ipynb
