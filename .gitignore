@@ -8,3 +8,4 @@ assignment final/data/test_set_one.csv
 assignment final/data/test_set_two.csv
 assignment final/data/training_set.csv
 assignment final/src/data_splitter.ipynb
+assignment final/src/model.fit

@@ -1,6 +1,7 @@
 import time
 import yaml
 import datamanager
+import model
 
 class Main:
 
@@ -11,6 +12,7 @@ class Main:
     def event_loop(self):
         config = self.load_config()
         dmr = datamanager.DataManager()
+        mod = model.Model()
 
         old_files = []
         new_files = []
@@ -19,9 +21,27 @@ class Main:
             new_files = dmr.get_filenames(config["input_directory"])
 
             if dmr.new_file(old_files, new_files):
-                # Read each file
-                # Transform
+                # Read file
+                df_i = dmr.read_dataframe(new_files)
+                # Prepare data
+                df_i = dmr.drow_low_quality(df_i)
+                df_i = dmr.format_dataframe(df_i)
+                # Extract fractions
+                broken, recovery, normal = dmr.create_fractions(df_i)
+                # Filter data
+                df_i = dmr.remove_machine_status(df_i)
+                df_i = dmr.fill_nans(df_i)
+                # Scale data
+                outlyer_fraction = mod.calculate_anomoly_cutoff(df_i, normal)
+                mat_s = mod.scale_data(df_i)
+                print(mat_s[0:10])
+                # Fit model
+                fit = mod.train_model(mat_s, outlyer_fraction)
+                # save model
+                mod.save_model(fit)
+                saved_model = mod.load_model()
                 # Predict
+                print("done!")
                 # Write predictions
                 # Create plots
                 # Save plots
@@ -38,5 +58,7 @@ class Main:
         self.event_loop()
 
 if __name__ == "__main__":
+    print("initialising...")
     m = Main()
+    print("waiting for file...")
     m.main()
