@@ -2,6 +2,7 @@ import time
 import yaml
 import datamanager
 import model
+import plotter
 
 class Main:
 
@@ -13,6 +14,7 @@ class Main:
         config = self.load_config()
         dmr = datamanager.DataManager()
         mod = model.Model()
+        plttr = plotter.Plotter()
 
         old_files = []
         new_files = []
@@ -34,17 +36,20 @@ class Main:
                 # Scale data
                 outlyer_fraction = mod.calculate_anomoly_cutoff(df_i, normal)
                 mat_s = mod.scale_data(df_i)
-                print(mat_s[0:10])
                 # Fit model
                 fit = mod.train_model(mat_s, outlyer_fraction)
                 # save model
                 mod.save_model(fit)
-                saved_model = mod.load_model()
+                fit = mod.load_model()
                 # Predict
+                predictions = mod.classify(fit, mat_s)
                 print("done!")
                 # Write predictions
+                dmr.save_predictions(mat_s, df_i, predictions, config["output_directory"])
                 # Create plots
+                plot = plttr.plot_sensor_anomolies("sensor_01", df_i, predictions, recovery, broken)
                 # Save plots
+                plttr.save_plot(plot, path=config["output_directory"])
                 # Remove old files
                 old_files = new_files
 

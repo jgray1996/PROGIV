@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from datetime import datetime
 
 
 class DataManager:
@@ -44,8 +45,15 @@ class DataManager:
         keep = df_object.columns[percentage_missing < cut_off]
         return df_object[keep]
 
-    def save_predictions(self, object):
-        return
+    def save_predictions(self, np_object, df_object, preditions,
+                         path):
+        now = datetime.now().strftime("%H_%M_%S")
+        df = pd.DataFrame(np_object)
+        df.columns = df_object.columns
+        df['predictions'] = preditions
+        df.to_csv(f"{path}prediction_{now}.csv")
+        return df
 
     def save_plots(self, object):
         return
+    

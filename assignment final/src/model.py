@@ -22,9 +22,9 @@ class Model:
         with open(path, 'rb') as model_in:
             return pickle.load(model_in)
 
-    def save_model(self, model):
-        with open("src/model.fit", 'wb') as model_out:
-            pickle.dump(object, model_out)
+    def save_model(self, model, path = "src/model.fit"):
+        with open(path, 'wb') as model_out:
+            pickle.dump(model, model_out)
 
-    def classify(self, model, object):
-        return model.predict(object)
+    def classify(self, model, np_object):
+        return model.predict(np_object)    

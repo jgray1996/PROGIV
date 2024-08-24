@@ -2,6 +2,6 @@ input_directory: "input/"
 output_directory: "output/"
 img_directory: "img/"
 sensors: 
-  - "name_1"
-  - "name_2"
+  - "sensor_01"
+  - "sensor_02"
 interval: 2
