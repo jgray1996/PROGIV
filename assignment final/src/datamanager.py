@@ -8,18 +8,11 @@ class DataManager:
     def get_filenames(self, path):
         return os.listdir(path)
 
-    # add logger
-    def new_file(self, old, new):
-        if old == new:
-            return False
-        elif len(old) < len(new):
-            return True
+    def remove_file(self, path, file):
+        return os.remove(f"{path}{file}")
 
-    def remove_file(self, name):
-        return
-
-    def read_dataframe(self, object):
-        data = pd.read_csv("input/" + object[0])
+    def read_dataframe(self, object, path):
+        data = pd.read_csv(path + object[-1])
         return data
 
     def format_dataframe(self, df_object):
@@ -41,19 +34,14 @@ class DataManager:
         return df_object.fillna(df_object.mean())
 
     def drow_low_quality(self, df_object, cut_off=10):
-        percentage_missing = df_object.isnull().sum()/len(df_object)*100
+        percentage_missing = df_object.isnull().sum() / len(df_object) * 100
         keep = df_object.columns[percentage_missing < cut_off]
         return df_object[keep]
 
-    def save_predictions(self, np_object, df_object, preditions,
-                         path):
+    def save_predictions(self, np_object, df_object, preditions, path):
         now = datetime.now().strftime("%H_%M_%S")
         df = pd.DataFrame(np_object)
         df.columns = df_object.columns
-        df['predictions'] = preditions
+        df["predictions"] = preditions
         df.to_csv(f"{path}prediction_{now}.csv")
         return df
-
-    def save_plots(self, object):
-        return
-    
