@@ -9,7 +9,12 @@ class DataManager:
     and preprocessing for machine learning tasks.
     """
 
+# I know that PEP requires you to document all the methods, but personally 
+# (and more important persons than me) dislike methods whose docstring is longer
+# than the method itself, especially if the method is clear in itself (like getters
+# and setters, which is not very pythonic anyway).
     def get_filenames(self, path):
+
         """
         Retrieve the list of filenames in the specified directory.
 
@@ -26,8 +31,8 @@ class DataManager:
         Remove a specified file from the given directory.
 
         Parameters:
-        path (str): The directory path where the file is located.
-        file (str): The name of the file to remove.
+        path (str): The directory path where the file is loc:wq
+
 
         Returns:
         None
@@ -45,6 +50,7 @@ class DataManager:
         Returns:
         pandas.DataFrame: The loaded data as a pandas DataFrame.
         """
+        # You could just return the DataFram at once – no need to create a variable in this case.
         data = pd.read_csv(path + object[-1])
         return data
 

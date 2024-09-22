@@ -47,6 +47,8 @@ class Main:
         new_files = []
 
         while True:
+            # You could have broken down this method into several sub-methods; that would
+            # have improved readability.
             new_files = dmr.get_filenames(config["input_directory"])
             print("Waiting for files...")
             if new_files:
@@ -108,7 +110,7 @@ class Main:
         The main entry point for the program. Determines the mode (training or classification)
         and starts the event loop accordingly.
         """
-        mode = input("If you want to train a model enter the letter 't' else any-key: ")
+        mode = input("If you want to train a model enter the letter 't' else any-key: ") # where's the any key on my keyboard?
         mode = mode.lower() == 't'
         self.event_loop(training_mode=mode)
 
@@ -116,3 +118,4 @@ class Main:
 if __name__ == "__main__":
     m = Main()
     m.main()
+    # or just Main().main()

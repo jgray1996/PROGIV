@@ -56,10 +56,15 @@ class Molecule:
         self.name = self.render_molecule()
 
     def __add__(self, other) -> str:
+        # This is incorrect
+        # The add-method shoud return a new Molecule. In your realisation you
+        # just return a string.
         return f"{self.render_molecule()}\
             {other.render_molecule()}"
 
     def __repr__(self) -> str:
+        # why us a formatted string here? You are only formatting self.name,
+        # which is already a string... 🤔
         return f"{self.name}"
 
     def render_molecule(self) -> str:
@@ -90,6 +95,8 @@ class Chloroplast:
             else:
                 raise ValueError
         except ValueError:
+            # Better to raise the error outside of the method, so that users of the method
+            # know something is wrong with their input.
             return []
 
         if self.water >= 12 and \
